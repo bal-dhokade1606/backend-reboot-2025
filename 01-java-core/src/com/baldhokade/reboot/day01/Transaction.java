@@ -1,4 +1,4 @@
-package main.java;
+package com.baldhokade.reboot.day01;
 
 import java.util.Objects;
 
@@ -32,16 +32,19 @@ public class Transaction {
         return currency;
     }
 
+    @Override
     public boolean equals(Object object) {
-        if (!(object instanceof Transaction that)) return false;
-        if (!super.equals(object)) return false;
+        if (!(object instanceof Transaction)) return false;
+        if(this == object) return true;
+        Transaction that  = (Transaction) object;
         return Double.compare(amount, that.amount) == 0
                 && Objects.equals(id, that.id)
                 && Objects.equals(type, that.type)
                 && Objects.equals(currency, that.currency);
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, type, amount, currency);
+        return Objects.hash(id, type, amount, currency);
     }
 }
