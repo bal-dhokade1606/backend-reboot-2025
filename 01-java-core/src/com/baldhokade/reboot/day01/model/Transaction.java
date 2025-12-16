@@ -14,11 +14,12 @@ public class Transaction {
 
   public Transaction(String id, TransactionType type, BigDecimal amount, String currency) {
     if (Objects.isNull(id)
-        || id.isEmpty()
+        || id.trim().isEmpty()
         || Objects.isNull(type)
         || Objects.isNull(amount)
+        || amount.signum() <= 0
         || Objects.isNull(currency)
-        || currency.isEmpty()) {
+        || currency.trim().isEmpty()) {
       throw new IllegalArgumentException(
           "One of Transaction id, type, amount, currency value is invalid");
     }
@@ -32,8 +33,8 @@ public class Transaction {
     return id;
   }
 
-  public String getType() {
-    return type.toString();
+  public TransactionType getType() {
+    return type;
   }
 
   public BigDecimal getAmount() {

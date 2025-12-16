@@ -9,11 +9,12 @@ import java.util.stream.Collectors;
 
 public class TransactionUtil {
 
-  public static Map<String, BigDecimal> getTotalAmtPerType(List<Transaction> txns) {
+  public static Map<TransactionType, BigDecimal> getTotalAmtPerType(List<Transaction> txns) {
     if (txns == null || txns.isEmpty()) {
       return Collections.emptyMap();
     }
     return txns.stream()
+        .filter(Objects::nonNull)
         .collect(
             Collectors.groupingBy(
                 Transaction::getType,
@@ -26,8 +27,10 @@ public class TransactionUtil {
       return Collections.emptyMap();
     }
     return txns.stream()
-        .filter(txn -> TransactionType.CREDIT.toString().equals(txn.getType()))
-        .sorted(new CompareByAmount().reversed())
+        .filter(Objects::nonNull)
+        .filter(txn -> TransactionType.CREDIT == txn.getType())
+        .filter(t -> "INR".equalsIgnoreCase(t.getCurrency()))
+        .sorted(Comparator.comparing(Transaction::getAmount).reversed())
         .limit(3)
         .collect(
             Collectors.toMap(

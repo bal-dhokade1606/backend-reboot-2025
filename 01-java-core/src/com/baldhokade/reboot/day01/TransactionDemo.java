@@ -27,7 +27,7 @@ public class TransactionDemo {
     Transaction txn7 =
         new Transaction("007", TransactionType.CREDIT, BigDecimal.valueOf(3750.00), "INR");
     Transaction txn8 =
-        new Transaction("008", TransactionType.CREDIT, BigDecimal.valueOf(2150.50), "INR");
+        new Transaction("008", TransactionType.CREDIT, BigDecimal.valueOf(2150.50), "USD");
 
     List<Transaction> txnList = Arrays.asList(txn1, txn2, txn3, txn4, txn5, txn6, txn7, txn8);
 
@@ -35,11 +35,11 @@ public class TransactionDemo {
     txnList.forEach(System.out::println);
 
     System.out.println("\nTotal amount by type :::: ");
-    Map<String, BigDecimal> totalAmtByType = TransactionUtil.getTotalAmtPerType(txnList);
-    totalAmtByType.forEach((key, value) -> System.out.printf("%s -> %.2f\n", key, value));
+    Map<TransactionType, BigDecimal> totalAmtByType = TransactionUtil.getTotalAmtPerType(txnList);
+    totalAmtByType.forEach((key, value) -> System.out.printf("%s -> %s%n", key, value));
 
     System.out.println("\nTop 3 credit transactions :::: ");
     Map<String, BigDecimal> topThreeCreditTxns = TransactionUtil.getTopThreeCreditTxns(txnList);
-    topThreeCreditTxns.forEach((key, value) -> System.out.printf("%s -> %.2f\n", key, value));
+    topThreeCreditTxns.forEach((key, value) -> System.out.printf("%s -> %s%n", key, value));
   }
 }
