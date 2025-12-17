@@ -1,4 +1,4 @@
-package com.baldhokade.reboot.day01.enums;
+package com.baldhokade.reboot.core.enums;
 
 public enum TransactionType {
     CREDIT,
