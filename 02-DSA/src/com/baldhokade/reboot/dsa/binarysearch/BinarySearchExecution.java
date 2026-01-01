@@ -10,7 +10,7 @@ public class BinarySearchExecution {
     int target = 12;
     System.out.println("target : " + target);
 
-    int index = BinarySearchUtil.binarySearch(nums, target);
+    int index = BinarySearch.binarySearch(nums, target);
     System.out.println("Binary search target index : " + index);
   }
 

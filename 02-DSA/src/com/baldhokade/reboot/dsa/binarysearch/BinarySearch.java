@@ -1,6 +1,6 @@
 package com.baldhokade.reboot.dsa.binarysearch;
 
-public class BinarySearchUtil {
+public class BinarySearch {
 
   public static int binarySearch(int[] nums, int target) {
     if(nums != null && nums.length == 0){
